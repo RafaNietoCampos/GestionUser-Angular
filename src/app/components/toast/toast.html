@@ -1,0 +1,22 @@
+<div
+  class="pointer-events-auto transform transition-all duration-300 ease-in-out shadow-2xl rounded-xl px-6 py-4 border-l-4"
+  [class]="getClasses()" role="alert">
+
+  <div class="flex items-center gap-3">
+    <!-- Contenido -->
+    <div class="flex-1 min-w-0">
+      @if (title()) {
+      <h3 class="font-semibold text-sm leading-tight">{{ title() }}</h3>
+      }
+      @if (message()) {
+      <p class="text-sm opacity-90 mt-1">{{ message() }}</p>
+      }
+    </div>
+
+    <!-- Close -->
+    <button (click)="dismiss()" class="p-1 hover:bg-white/20 rounded-full transition-colors ml-2 shrink-0" type="button"
+      aria-label="Cerrar">
+      <app-x-icon />
+    </button>
+  </div>
+</div>

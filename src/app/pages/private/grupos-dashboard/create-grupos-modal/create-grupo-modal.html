@@ -1,0 +1,75 @@
+@if (isActive()) {
+<div class="fixed inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm z-999" (click)="onBackdropClick()"></div>
+
+<div
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen md:w-162.5 bg-gray-50 p-10 rounded-lg shadow-lg h-screen md:h-[90vh] overflow-y-auto z-1000">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-bold text-gray-900 m-0">{{ modalTitle() }}</h2>
+    <button
+      class="bg-transparent border-none cursor-pointer text-gray-900 p-1 flex items-center justify-center hover:bg-gray-100 rounded"
+      (click)="closeModal()" type="button">
+      <app-x-icon />
+    </button>
+  </div>
+
+  <!-- Form -->
+  <form [formGroup]="form">
+    <div class="mb-6 flex flex-col">
+      <label class="block text-md font-medium text-gray-900 mb-3">Nombre</label>
+      <input formControlName="name" type="text"
+        class="w-full p-3 border border-transparent focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-md text-gray-700 bg-white rounded-md shadow-sm"
+        placeholder="Nombre del grupo..." />
+      @if (form.get('name')?.touched && form.get('name')?.errors?.['required']) {
+      <p class="mt-1 text-sm text-red-600">El Nombre es obligatorio</p>
+      }
+      @if (form.get('name')?.touched && form.get('name')?.errors?.['minlength']) {
+      <p class="mt-1 text-sm text-red-600">Mínimo 6 caracteres</p>
+      }
+    </div>
+
+    <div class="mb-6 flex flex-col">
+      <label class="block text-md font-medium text-gray-900 mb-3">Descripción</label>
+      <textarea formControlName="description" rows="8" type="text"
+        class="w-full p-3 border border-transparent focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-md text-gray-700 bg-white rounded-md shadow-sm"
+        placeholder="Descripción de la noticia...">
+      </textarea>
+      @if (form.get('description')?.touched && form.get('description')?.errors?.['required']) {
+      <p class="mt-1 text-sm text-red-600">La descripción es obligatoria</p>
+      }
+      @if (form.get('description')?.touched && form.get('description')?.errors?.['minlength']) {
+      <p class="mt-1 text-sm text-red-600">Mínimo 10 caracteres</p>
+      }
+    </div>
+
+    <div class="mb-6 flex flex-col">
+      <label class="block text-md font-medium text-gray-900 mb-3">Imagen</label>
+
+      <input id="image" type="file" accept=".jpg,.jpeg,.png"
+        (change)="form.controls.imageFile.setValue(($any($event.target).files?.item(0) ?? null))" class="block w-full rounded-md border border-transparent bg-white p-3 text-md text-gray-700 shadow-sm
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-100
+           file:mr-4 file:rounded-md file:border-0 file:bg-blue-600 file:px-4 file:py-2.5
+           file:text-sm file:font-medium file:text-white hover:file:bg-blue-700" />
+
+      <input type="hidden" formControlName="imageFile" />
+    </div>
+
+
+
+    <!-- Footer -->
+    <div class="flex justify-center md:justify-end gap-6 pt-12 pb-3">
+      <button type="button"
+        class="px-6 py-3 text-gray-900 font-medium bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        (click)="closeModal()">
+        Cancelar
+      </button>
+      <button type="button"
+        class="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm disabled:opacity-50"
+        [disabled]="form.invalid" (click)="onSave()">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
+}

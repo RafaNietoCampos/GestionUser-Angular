@@ -1,0 +1,67 @@
+<div class="max-w-full">
+  <div class="mb-8">
+    <h1 class="m-0 mb-2 text-3xl font-bold text-gray-900">Gestión de Grupos</h1>
+    <p class="m-0 text-base text-gray-500">Administra los grupos existentes</p>
+  </div>
+
+  <div class="mb-5 flex w-full flex-col gap-2 md:flex-row">
+    <app-search-box class='w-full' placeholder="Buscar en tu biblioteca..." (onInput)="onInput($event)" />
+
+    <div class="w-full flex flex-col justify-end gap-2 md:flex-row">
+      <button
+        class="flex cursor-pointer items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-base font-medium text-white hover:bg-blue-700"
+        (click)="grupoModal.openModal()">
+        <app-folders-icon />
+        Añadir Grupo
+      </button>
+    </div>
+  </div>
+
+  <div class="overflow-hidden rounded-xl border border-gray-200 bg-white">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr>
+          <th
+            class="border-b border-gray-200 bg-gray-50 px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Nombre
+          </th>
+          <th
+            class="border-b border-gray-200 bg-gray-50 px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+            ACCIONES
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (grupo of filteredGrupos(); track grupo.id) {
+        <tr class="last:[&>td]:border-b-0">
+          <td class="border-b border-gray-200 px-6 py-4 align-middle text-sm text-gray-900">
+            <div class="flex items-center gap-3">
+              <div class="flex flex-col">
+                <div class="font-medium text-gray-900">{{ grupo.name }}</div>
+              </div>
+            </div>
+          </td>
+
+          <td class="border-b border-gray-200 px-6 py-4 align-middle text-sm text-gray-900">
+            <div class="flex justify-end gap-2">
+              <button
+                class="cursor-pointer rounded-md border border-gray-200 bg-white px-3 py-1.5 text-[0.8125rem] font-medium text-gray-700 hover:bg-gray-50"
+                (click)="grupoModal.openModal(grupo)">
+                Modificar
+              </button>
+
+              <button (click)="deleteGrupo(grupo)"
+                class="cursor-pointer rounded-md border border-transparent bg-red-50 px-3 py-1.5 text-[0.8125rem] font-medium text-red-600 hover:bg-red-100">
+                Eliminar
+              </button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-grupo-modal #grupoModal (onSuccess)="addGrupoToList($event)" />

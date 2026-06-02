@@ -1,0 +1,35 @@
+<div class="mx-auto max-w-3xl px-6">
+  <div class="mb-8">
+    <button
+      class="flex cursor-pointer items-center gap-2 bg-transparent px-0 py-2 text-[0.9375rem] text-gray-500 transition-colors hover:text-gray-900"
+      (click)="goBack()"
+    >
+      <app-arrow-icon className="size-5 rotate-180" />
+      Volver a Noticias
+    </button>
+  </div>
+
+  @if (post(); as item) {
+    <article class="overflow-hidden rounded-xl bg-white">
+      <div class="h-100 w-full overflow-hidden">
+        <app-image
+          [src]="item.imageUrl"
+          [alt]="item.title"
+          className="w-full object-cover object-center"
+        />
+      </div>
+
+      <div class="px-10 py-8">
+        <h1 class="mb-6 m-0 text-[2rem] font-bold leading-tight text-gray-900">
+          {{ item.title }}
+        </h1>
+      </div>
+
+      <div class="p-10">
+        <p class="m-0 mb-5 whitespace-pre-line text-base leading-relaxed text-gray-700 last:mb-0">
+          {{ post()?.description }}
+        </p>
+      </div>
+    </article>
+  }
+</div>

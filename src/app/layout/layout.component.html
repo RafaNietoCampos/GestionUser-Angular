@@ -1,0 +1,118 @@
+<div class="min-h-dvh bg-slate-50 text-slate-900">
+  <!-- Topbar -->
+  <header class="sticky md:hidden top-0 z-30 border-b border-slate-200 bg-white/80 backdrop-blur">
+    <div class="mx-auto flex h-14 max-w-screen-2xl items-center gap-3 px-4">
+      <!-- Botón móvil -->
+      <button type="button" class="inline-flex items-center justify-center rounded-md p-2 hover:bg-slate-100 lg:hidden"
+        (click)="openSidebar()" aria-controls="app-sidebar" [attr.aria-expanded]="sidebarOpen()">
+        <span class="sr-only">Abrir menú</span>
+        <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <div class="font-semibold">Hermandad del Mayor Dolor</div>
+
+      <div class="flex-1"></div>
+    </div>
+  </header>
+
+  <!-- Overlay (solo cuando está abierta en móvil) -->
+  @if (sidebarOpen()) {
+  <button type="button" class="fixed inset-0 z-40 bg-black/40 lg:hidden" (click)="closeSidebar()"
+    aria-label="Cerrar menú"></button>
+  }
+
+  <!-- Sidebar -->
+  <aside id="app-sidebar" class="fixed inset-y-0 left-0 z-50 border-r border-slate-200 bg-white transition-transform duration-200 ease-out
+           -translate-x-full lg:translate-x-0 w-64" [class.translate-x-0]="sidebarOpen()"
+    [attr.data-state]="sidebarState()" role="navigation">
+    <!-- Contenedor del aside -->
+    <div class="flex h-full flex-col p-[24px_16px]">
+      <!-- Header -->
+      <div class="mb-10 px-3">
+        <div class="flex items-center gap-3">
+          <app-costal-icon className="size-8" />
+          <span class="text-lg font-bold text-slate-900">Hermandad del Mayor Dolor</span>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="flex flex-col gap-1">
+        @for (item of menuItems; track item.title) {
+        @if (shouldShowMenuRoute(item)) {
+        <a [routerLink]="item.path"
+        routerLinkActive="bg-slate-100 text-slate-900 font-semibold"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-lg px-3 py-3 text-[0.9375rem] font-medium text-slate-600
+                 transition hover:bg-slate-100 hover:text-slate-900">
+          <span class="flex items-center justify-center">
+            <ng-container *ngComponentOutlet="item.data?.['icon']"></ng-container>
+          </span>
+          {{ item.title }}
+        </a>
+        }
+        }
+      </nav>
+
+      <!-- Footer (mt-auto) -->
+      <div class="mt-auto">
+        @if (this.authService.isLogged) {
+        <div class="flex flex-col gap-3">
+          <button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300
+                 bg-transparent px-4 py-2.5 text-sm font-medium text-slate-600 transition
+                 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900" type="button" (click)="logout()">
+            <span class="flex items-center justify-center">
+              <app-logout-icon />
+            </span>
+            Cerrar sesión
+          </button>
+        </div>
+
+        <div class="my-5 h-px bg-slate-200"></div>
+
+        <a class="flex items-center gap-3 px-1.5" routerLink="/account/profile" routerLinkActive="opacity-100">
+          <div>
+            <img class="h-10 w-10 rounded-full object-cover" src="images/avatar.png" alt="avatar" />
+          </div>
+
+          <div class="flex flex-col no-underline">
+            <div class="text-sm font-semibold leading-5 text-slate-900">
+              {{ this.authService.currentUser?.name }}
+            </div>
+          </div>
+        </a>
+        } @else {
+        <div class="flex flex-col gap-3">
+          <button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-slate-300
+                 bg-transparent px-4 py-2.5 text-sm font-medium text-slate-600 transition
+                 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900" type="button"
+            (click)="closeSidebar(); loginModal.openModal()">
+            <span class="flex items-center justify-center">
+              <app-login-icon />
+            </span>
+            Iniciar sesión
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Contenido -->
+  <main class="mx-auto max-w-screen-2xl p-4 transition-[padding] duration-200 ease-out lg:pl-72">
+    <router-outlet />
+  </main>
+</div>
+
+
+<app-login-modal #loginModal />
+
+<div class='fixed top-6 right-6 z-9999 flex flex-col items-end space-y-3 pointer-events-none'>
+  @for (toast of toastService.visibleToasts(); track toast.id) {
+  <app-toast [id]="toast.id" [type]="toast.type" [title]="toast.title || null" [message]="toast.message"
+    [duration]="toast.duration" />
+  }
+</div>

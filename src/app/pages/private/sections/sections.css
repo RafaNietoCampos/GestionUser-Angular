@@ -1,0 +1,242 @@
+.sections-container {
+    max-width: 100%;
+}
+
+.header {
+    margin-bottom: 24px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.filter-bar {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 24px;
+}
+
+.search-box {
+    position: relative;
+    max-width: 400px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 10px 10px 36px;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #2563EB;
+}
+
+.assignment-panels {
+    display: flex;
+    gap: 24px;
+}
+
+.panel {
+    flex: 1;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    /* Fixed height or responsive */
+}
+
+.panel-header {
+    background-color: #F3F4F6;
+    /* Light grey header */
+    padding: 16px;
+    border-bottom: 1px solid #E5E7EB;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+}
+
+.badge {
+    background: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6B7280;
+    border: 1px solid #E5E7EB;
+}
+
+.step-selector {
+    padding: 16px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.step-selector label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6B7280;
+    margin-bottom: 4px;
+}
+
+.step-selector select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    color: #1F2937;
+    margin-bottom: 4px;
+}
+
+.step-options {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+}
+
+.user-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    /* More padding? Image has items with some spacing? Actually image shows distinct cards slightly? Or just list items. */
+    margin-bottom: 8px;
+    /* Image shows available users have grey background on hover or strip? 
+       Actually user cards in image seem to have a white background? No, list has white background. Items seem transparent or very subtle.
+       Let's stick to simple clean list. 
+    */
+    border-radius: 6px;
+}
+
+.user-item:hover {
+    background-color: #F9FAFB;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.email {
+    font-size: 0.75rem;
+    color: #6B7280;
+}
+
+.btn-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-assign {
+    background-color: #ECFDF5;
+    color: #10B981;
+    /* Green arrow */
+}
+
+.btn-assign:hover {
+    background-color: #D1FAE5;
+}
+
+.btn-unassign {
+    background-color: #FEF2F2;
+    color: #EF4444;
+    /* Red arrow */
+}
+
+.btn-unassign:hover {
+    background-color: #FEE2E2;
+}
+
+.panel-footer {
+    padding: 16px;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.step-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.btn-primary-small {
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.btn-primary-small:hover {
+    background-color: #1D4ED8;
+}
+
+/* Image analysis update: The "Usuarios Disponibles" panel list items have a background color (light grey) and the arrow is on the right. 
+   The "Usuarios Asignados" panel list items also look similar. 
+   Wait, in the image, the "available users" items have a very light grey background? Or just hover? 
+   Actually the alternates look white/grey? No.
+   Let's check the arrow buttons again.
+   Left panel arrow: Green pointing right box.
+   Right panel arrow: Red pointing left box.
+*/

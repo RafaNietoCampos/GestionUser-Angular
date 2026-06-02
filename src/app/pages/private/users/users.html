@@ -1,0 +1,70 @@
+<div class="users-container">
+  <div class="header">
+    <h1>Gestión de Usuarios</h1>
+    <p class="subtitle">Administra los miembros del equipo y sus permisos</p>
+  </div>
+
+  <div class="flex w-full flex-col md:flex-row gap-2 mb-5">
+    <div class='basis-1/2'>
+      <app-search-box placeholder="Buscar en tu biblioteca..." (onInput)="onInput($event)" />
+    </div>
+    <div class='basis-full justify-end flex flex-col md:flex-row gap-2'>
+      <button class="btn-primary" (click)="userModal.openModal()">
+        <app-add-user-icon />
+        Añadir Usuario
+      </button>
+      <button class="btn-primary" (click)="this.pdfService.exportUsersToPdf(this.userList())">
+        <app-save-icon />
+        Exportar a PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>USUARIO</th>
+          <th>ROL</th>
+          <th class="text-center">ESTADO</th>
+          <th class="text-right">ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of filteredUsers(); track user.email) {
+        <tr>
+          <td>
+            <div class="user-cell">
+              <img src="/images/avatar.png" [alt]="user.name" class="avatar">
+              <div class="user-details">
+                <div class="name">{{ user.name }}</div>
+                <div class="email">{{ user.email }}</div>
+              </div>
+            </div>
+          </td>
+          <td class='first-letter:capitalize'>{{ user.role }}</td>
+          <td>
+            <span class="status-badge" [class.active]="user.active" [class.absent]="!user.active">
+              {{ user.active ? 'Habilitado' : 'Deshabilitado' }}
+            </span>
+          </td>
+          <td>
+            @if (authService.currentUser?.id !== user.id) {
+            <div class="actions">
+              <button class="btn-secondary" (click)="userModal.openModal(user)">Modificar</button>
+              @if (user.active) {
+              <button class="btn-danger-light" (click)="deleteUser(user)">Deshabilitar</button>
+              } @else {
+              <button class="btn-primary" (click)="enableUser(user)">Habilitar</button>
+              }
+            </div>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-user-modal #userModal (onSuccess)='addUserToList($event)' />

@@ -1,0 +1,72 @@
+<div class="sections-container">
+  <div class="header">
+    <h1>Gestión de Asignaciones</h1>
+  </div>
+
+  <div class="filter-bar">
+    <app-search-box placeholder="Filtrar por usuario" (onInput)="onInput($event)"/>
+  </div>
+
+  <div class="assignment-panels">
+    <!-- Available Users -->
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Usuarios Disponibles</h2>
+        <span class="badge">{{ availableUsers().length }}</span>
+      </div>
+      <div class="user-list">
+        @for (user of filteredUsers(); track user.id) {
+        <div class="user-item">
+          <div class="user-info">
+            <img src="images/avatar.png" class="avatar">
+            <div class="details">
+              <span class="name">{{ user.name }}</span>
+              <span class="email">{{ user.email }}</span>
+            </div>
+          </div>
+          <button class="btn-action btn-assign" (click)="assignUser(user)">
+            <app-arrow-icon />
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Assigned Users -->
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Usuarios Asignados</h2>
+        <span class="badge">{{ assignedUsers.length }}</span>
+      </div>
+
+      <div class="step-selector">
+        <label>Paso</label>
+        <div class="step-controls">
+          <select [(ngModel)]="selectedStep">
+            <option value="Paso Cristo">Paso Cristo</option>
+            <option value="Paso Virgen">Paso Virgen</option>
+          </select>
+          <button class="btn-primary-small">Guardar</button>
+        </div>
+        <div class="step-options">Opciones: Paso Cristo, Paso Virgen</div>
+      </div>
+
+      <div class="user-list">
+        @for (user of assignedUsers; track user.id) {
+        <div class="user-item">
+          <div class="user-info">
+            <img src="images/avatar.png" class="avatar">
+            <div class="details">
+              <span class="name">{{ user.name }}</span>
+              <span class="email">{{ user.email }}</span>
+            </div>
+          </div>
+          <button class="btn-action btn-unassign" (click)="unassignUser(user)">
+            <app-arrow-icon className="size-5 rotate-180" />
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

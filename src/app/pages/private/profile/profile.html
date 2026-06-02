@@ -1,0 +1,94 @@
+<div class="profile-container">
+  <div class="header">
+    <h1>Configuración de Perfil</h1>
+    <p class="subtitle">Gestiona tu información personal y preferencias de contacto.</p>
+  </div>
+<!-- Card para la información personal -->
+  <div class="card">
+    <div class="avatar-section">
+      <div class="avatar-wrapper">
+        <img src="images/avatar.png" alt="avatar">
+      </div>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" [value]="this.authService.currentUser?.name" readonly class="input-readonly">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Correo Electrónico</label>
+          <input type="email" [(ngModel)]="profileData.email" name="email">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" [(ngModel)]="profileData.phone" name="phone">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Dirección</label>
+        <input type="text" [(ngModel)]="profileData.address" name="address">
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-save" (click)="updateProfile()">
+          <app-save-icon />
+          Guardar datos
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- Card para las contraseñas -->
+  <div class="card mt-6">
+    <div class="flex justify-between items-center cursor-pointer p-4 border-b border-gray-200"
+         (click)="togglePasswordSection()">
+      <h2 class="text-xl font-semibold">Cambiar Contraseña</h2>
+      <span class="transition-transform duration-300 ease-in-out"
+            [class.rotate-180]="isPasswordSectionOpen">▼</span>
+    </div>
+
+    <div class="overflow-hidden transition-all duration-300 ease-in-out"
+         [class.max-h-0]="!isPasswordSectionOpen"
+         [class.max-h-[500px]]="isPasswordSectionOpen">
+      <form class="p-6" (ngSubmit)="updatePassword()">
+        <div class="form-group">
+          <label>Contraseña Actual</label>
+          <input type="password"
+                 [(ngModel)]="passwordData.oldPassword"
+                 name="oldPassword"
+                 placeholder="Ingresa tu contraseña actual"
+                 class="w-full">
+        </div>
+
+        <div class="form-group">
+          <label>Contraseña Nueva</label>
+          <input type="password"
+                 [(ngModel)]="passwordData.newPassword"
+                 name="newPassword"
+                 placeholder="Ingresa tu nueva contraseña"
+                 class="w-full">
+        </div>
+
+        <div class="form-group">
+          <label>Confirmación de Contraseña Nueva</label>
+          <input type="password"
+                 [(ngModel)]="passwordData.confirmPassword"
+                 name="confirmPassword"
+                 placeholder="Confirma tu nueva contraseña"
+                 class="w-full">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">
+            Actualizar Contraseña
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>

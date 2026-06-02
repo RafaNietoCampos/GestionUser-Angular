@@ -1,0 +1,31 @@
+<div class="home-container">
+  <header>
+    <div>
+      <h1>Últimas Novedades</h1>
+      <p class="leading-relaxed mb-8 flex-1 text-lg text-gray-400 first-letter:capitalize">{{today}}</p>
+    </div>
+    <div class="actions">
+      <app-search-box placeholder="Buscar..." (onInput)="onInput($event)" />
+    </div>
+  </header>
+
+  <div class="news-grid">
+    @for (item of filteredNews(); track item.title) {
+    <article class="news-card" (click)="navigateToNews(item.id)">
+      <div class="card-image-wrapper">
+        <app-image [src]="item.imageUrl" [alt]="item.title" className="rounded-lg object-center object-cover w-full shadow-md"/>
+      </div>
+      <div class="card-content">
+        <h2>{{ item.title }}</h2>
+        <p class='text-slate-500 text-base leading-relaxed mb-8 flex-1 line-clamp-3'>{{ item.description }}</p>
+        <div class="card-footer">
+          <span class="read-more">
+            Leer más
+            <app-arrow-icon />
+          </span>
+        </div>
+      </div>
+    </article>
+    }
+  </div>
+</div>

@@ -1,0 +1,51 @@
+@if (isActive) {
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Registro de Usuario</h2>
+      <p>Completa la información para dar de alta un nuevo miembro.</p>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label>Nombre y apellidos</label>
+        <input type="text" placeholder="Ej. Juan Pérez García">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>DNI</label>
+          <input type="text" placeholder="12345678X">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" placeholder="+34 600 000 000">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="juan.perez@organizacion.com">
+      </div>
+
+      <div class="form-group">
+        <label>Dirección completa</label>
+        <input type="text" placeholder="Calle Ejemplo 123, Madrid">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+        <div class="form-group">
+          <label>Confirmar contraseña</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+      </div>
+
+      <button type="button" class="btn-submit">Registrar Usuario</button>
+    </form>
+  </div>
+</div>
+}

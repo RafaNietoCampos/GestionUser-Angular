@@ -1,0 +1,33 @@
+<div class="size-full bg-(--background-color) flex items-center justify-center px-4 py-16">
+  <div class="max-w-2xl w-full text-center space-y-8">
+    <!-- Icono 404 -->
+    <div
+      class="mx-auto w-32 h-32 bg-(--primary-color)/10 rounded-2xl flex items-center justify-center shadow-xl border-4 border-(--primary-color)/20">
+      <div class="text-5xl font-bold text-(--text-main)">404</div>
+    </div>
+
+    <div>
+      <h1
+        class="text-4xl md:text-6xl font-bold bg-linear-to-r from-(--primary-color) to-slate-700 bg-clip-text text-transparent pb-4">
+        Página no encontrada
+      </h1>
+
+      <p class="text-2xl text-(--text-secondary) mb-8 max-w-md mx-auto leading-relaxed">
+        La página que buscas se ha perdido en la procesión.
+      </p>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center text-center">
+      <a routerLink="/"
+        class="px-8 py-2 bg-(--primary-color) text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 text-lg">
+        Volver a Inicio
+      </a>
+
+      <button (click)="goBack()"
+        class="px-8 py-2 border border-(--text-secondary) text-(--text-secondary) font-semibold rounded-xl hover:bg-slate-100 hover:text-(--text-main) hover:border-(--primary-color) transition-all duration-300 text-lg">
+        Volver atrás
+      </button>
+    </div>
+  </div>
+</div>

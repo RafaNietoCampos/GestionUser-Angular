@@ -1,0 +1,161 @@
+.profile-container {
+    max-width: 100%;
+}
+
+.header {
+    margin-bottom: 32px;
+}
+
+h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+}
+
+.subtitle {
+    color: #6B7280;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    /* White area in image */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn-camera {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #2563EB;
+    color: white;
+    border: 2px solid white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-camera svg {
+    width: 14px;
+    height: 14px;
+}
+
+.avatar-info h3 {
+    text-align: left;
+    /* Explicitly align left */
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 4px 0;
+}
+
+.avatar-info p {
+    text-align: left;
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 24px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    /* Bolder as per image? Sems semi-bold */
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    color: #1F2937;
+    outline: none;
+    transition: all 0.2s;
+}
+
+input:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.input-readonly {
+    background-color: #F3F4F6;
+    /* Grey background for name as in image? */
+    /* Wait, the image shows "Ana Garcia Lopez" in a grey box. 
+       Is it disabled? No, probably just styled. 
+       Let's stick to consistent styling. 
+       Actually, I'll make it normal.
+    */
+}
+
+.form-actions {
+    margin-top: 32px;
+}
+
+.btn-save {
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+}
+
+.btn-save:hover {
+    background-color: #1D4ED8;
+}

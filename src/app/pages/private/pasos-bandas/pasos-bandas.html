@@ -1,0 +1,28 @@
+<div class="pasos-bandas-container">
+  <header>
+    <div class="flex justify-between mb-12">
+      <h1>Grupos de la Hermandad</h1>
+    </div>
+    <div class="actions py-6">
+      <app-search-box placeholder="Buscar..." (onInput)="onInput($event)" />
+    </div>
+  </header>
+
+  <div class="cards-grid">
+    @for (item of filteredGroups(); track item.id) {
+    <div class="card">
+      <div class="card-image-container">
+        <app-image [src]="item.imageUrl" [alt]="item.name"
+          className="rounded-lg object-center object-cover w-full shadow-md" />
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">{{ item.name }}</h3>
+        <p class="card-description">{{ item.description }}</p>
+        <div class="card-actions">
+
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
