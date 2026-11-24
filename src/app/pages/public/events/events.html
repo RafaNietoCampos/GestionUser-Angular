@@ -52,7 +52,7 @@
 
         <div class="max-h-18 sm:max-h-24 overflow-y-auto pr-1">
           @for (event of eventList(); track $index) {
-          @if (day === event.date.getDay()) {
+          @if (day === event.date.getDate()) {
           <div (click)="onEventSelect(event)"
             class="cursor-pointer px-2 py-1 rounded-md text-xs font-medium mb-1 border-l-4 bg-purple-50 text-purple-800 border-purple-500 truncate">
             {{ event.title }}

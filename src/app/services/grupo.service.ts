@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { CreateGroup, Group, UpdateGroupPayload } from '@app/types/group';
-import { environment } from 'environments/environment.development';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({

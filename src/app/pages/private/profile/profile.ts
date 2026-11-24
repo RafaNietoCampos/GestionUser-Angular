@@ -58,7 +58,8 @@ export class Profile {
     this.usersService.updateProfile(this.profileData).subscribe({
       next: () => {
         this.toastSuccess('Datos actualizados correctamente');
-        // Opcionalmente, actualiza el usuario actual en el servicio de autenticación
+        // Refresca los datos de la sesión para que el resto de la app vea los cambios
+        this.authService.user.update(user => user ? { ...user, ...this.profileData } : user);
       },
       error: (err) => {
         console.error('Error completo:', err);
@@ -76,7 +77,7 @@ export class Profile {
           errorMessage = err.message;
         }
 
-        alert('Error al actualizar los datos: ' + errorMessage);
+        this.toastError('Error al actualizar los datos: ' + errorMessage);
       }
     });
   }

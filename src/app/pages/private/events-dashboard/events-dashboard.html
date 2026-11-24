@@ -64,6 +64,6 @@
 </div>
 
 @if (showEventModal) {
-<app-event-modal (close)="showEventModal = false" [groups]="groupList()" [loading]="groupsLoading()"
+<app-event-modal (close)="showEventModal = false" (saved)="loadEvents()" [groups]="groupList()" [loading]="groupsLoading()"
   [error]="groupsError()" [event]="selectedEvent()"></app-event-modal>
 }

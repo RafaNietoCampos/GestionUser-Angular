@@ -1,6 +1,8 @@
 import { NgComponentOutlet } from '@angular/common'
 import { Component, computed, inject, signal, ViewChild } from '@angular/core'
-import { Router, RouterLink, RouterLinkActive, RouterOutlet, type Route, type Routes } from '@angular/router'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet, type Route, type Routes } from '@angular/router'
+import { filter } from 'rxjs'
 import { routes } from '@app/app.routes'
 import { CostalIcon } from "@app/components/icons/costal"
 import { GridIcon } from '@app/components/icons/grid'
@@ -34,6 +36,18 @@ export class LayoutComponent {
     { title: 'Inicio', path: '/', data: { icon: GridIcon } },
     ...extractMenuRoutes(routes)
   ]
+
+  constructor() {
+    // Si un guardia nos ha traído aquí por no tener sesión (?returnUrl=...), abrir el login
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd), takeUntilDestroyed())
+      .subscribe(() => {
+        const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl']
+        if (returnUrl && !this.authService.isLogged) {
+          setTimeout(() => this.loginModal?.openModal())
+        }
+      })
+  }
 
   openSidebar () { this.sidebarOpen.set(true) }
   closeSidebar () { this.sidebarOpen.set(false) }

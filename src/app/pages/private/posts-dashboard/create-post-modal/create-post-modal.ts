@@ -71,12 +71,16 @@ export class PostModal {
       if (this.isEdit()) {
         const imageId = imageFile ? (await this.uploadImage(imageFile)) : null
 
-        const payload = {
+        // si intentó subir una nueva imagen y falló, no continuamos
+        if (imageFile && !imageId) return
+
+        // sin imagen nueva no se envía imageId, para conservar la actual
+        const payload: CreatePost = {
           id: this.post()?.id,
           title: postData.title,
           description: postData.description,
-          imageId,
-        } satisfies CreatePost
+          ...(imageId && { imageId }),
+        }
 
         this.postsService.update(payload).subscribe({
           next: (value) => {

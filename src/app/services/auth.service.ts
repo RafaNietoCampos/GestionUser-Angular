@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { inject, Injectable, signal } from '@angular/core'
 import { COOKIES } from '@app/constants/cookies'
 import type { User } from '@app/types/user'
-import { environment } from 'environments/environment.development'
+import { environment } from 'environments/environment'
 import { CookieService } from 'ngx-cookie-service'
 import { firstValueFrom, map } from 'rxjs'
 

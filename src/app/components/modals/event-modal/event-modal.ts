@@ -98,7 +98,6 @@ export class EventModal {
           this.toastService.success('Evento actualizado correctamente.')
           this.saved.emit()
           this.close.emit()
-          location.reload()
         },
         error: () => {
           this.saving = false
@@ -119,7 +118,6 @@ export class EventModal {
           this.toastService.success('Evento creado correctamente.')
           this.saved.emit()
           this.close.emit()
-          location.reload()
         },
         error: () => {
           this.saving = false

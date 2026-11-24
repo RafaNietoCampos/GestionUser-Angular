@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
 import { LoginIcon } from '@app/components/icons/login'
 import { AuthService } from '@app/services/auth.service'
 import { ToastService } from '@app/services/toast.service'
@@ -15,6 +16,7 @@ export class LoginModal {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private toastService = inject(ToastService);
+  private router = inject(Router);
 
   isActive = false;
 
@@ -57,6 +59,12 @@ export class LoginModal {
       if (!result) throw new Error('Login falló')
 
       this.toastService.success(`Bienvenida/o ${result.user.name.split(' ')[0]}`)
+
+      // Si llegó aquí redirigido desde una página privada, volver a ella
+      const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl']
+      if (typeof returnUrl === 'string' && returnUrl.startsWith('/')) {
+        this.router.navigateByUrl(returnUrl)
+      }
     } catch (error: any) {
       if (error.message === 'ACCOUNT_INACTIVE') {
         this.toastService.error('Su cuenta está desactivada. Por favor, contacte con el administrador.')

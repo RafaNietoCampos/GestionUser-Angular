@@ -45,7 +45,7 @@ export const routes: Routes = [
             }
           },
           {
-            title: 'Administar Grupos',
+            title: 'Administrar Grupos',
             path: 'grupos-dashboard',
             component: AdminGrupos,
             data: {
@@ -65,7 +65,7 @@ export const routes: Routes = [
             }
           },
           {
-            title: 'Administar Noticias',
+            title: 'Administrar Noticias',
             path: 'posts-dashboard',
             component: NewsPaper,
             data: {
@@ -75,7 +75,7 @@ export const routes: Routes = [
             }
           },
           {
-            title: 'Administar Eventos',
+            title: 'Administrar Eventos',
             path: 'events-dashboard',
             component: AdminEvents,
             data: {

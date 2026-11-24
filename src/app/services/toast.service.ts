@@ -11,6 +11,7 @@ export interface ToastData {
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
+  private nextId = 0
   toasts = signal<ToastData[]>([]);
   visibleToasts = computed(() => this.toasts());
 
@@ -31,7 +32,7 @@ export class ToastService {
   }
 
   private show (type: ToastType, message: string, title?: string, duration = 5000) {
-    this.toasts.update(t => [...t, { id: Date.now(), type, title, message, duration }])
+    this.toasts.update(t => [...t, { id: ++this.nextId, type, title, message, duration }])
   }
 
   dismiss (id: number) {

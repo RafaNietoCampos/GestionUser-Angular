@@ -36,6 +36,10 @@ export class AdminEvents {
 
 
   constructor() {
+    this.loadEvents()
+  }
+
+  loadEvents() {
     this.eventService.getAllEvents().subscribe({
       next: value => {
         this.eventList.set(value)

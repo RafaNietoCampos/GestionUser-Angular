@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core'
 
 @Component({
-  selector: 'app-grid-icon',
+  selector: 'app-gear-icon',
   standalone: true,
   template: `
   <svg xmlns="http://www.w3.org/2000/svg"
